@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
+// ignore_for_file: prefer_const_constructors, duplicate_ignore,import_of_legacy_library_into_null_safe,use_key_in_widget_constructors
+import 'core/store.dart';
+import 'pages/cart_page.dart';
+import 'pages/home_page.dart';
+import 'pages/login_page.dart';
+import 'utils/routes.dart';
+import 'widgets/themes.dart';
+
+void main() {
+  runApp(VxState(store: MyStore(), child: MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      themeMode: ThemeMode.system,
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
+      debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.homeroute,
+      routes: {
+        "/": (context) => Loginpage(),
+        MyRoutes.homeroute: (context) => HomePage(),
+        MyRoutes.loginroute: (context) => Loginpage(),
+        MyRoutes.cartroute: (context) => CartPage(),
+      },
+    );
+  }
+}
